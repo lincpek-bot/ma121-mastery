@@ -1,5 +1,6 @@
 // Q1 — Graph Reading. Hand-built graph specs with verified answer keys.
-import { el, clear, dots, modeHead, mcqCard, finalBanner, nextRow } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, finalBanner, nextRow, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { mulberry32, shuffle } from '../rng.js';
 
 // Each graph spec describes a piecewise function on x-range. We render to SVG
@@ -252,6 +253,7 @@ export function mount(view, ctx) {
       sub: 'Read limits, continuity, asymptotes, and holes directly from the graph.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
+    view.appendChild(methodPanel('q1', METHODS.q1.title, METHODS.q1.body));
     view.appendChild(dots(p.questions.length, stepIdx, perStep));
     const card = el('div', { class: 'card' });
     card.appendChild(el('div', { class: 'step-label', text: `Problem ${probIdx + 1} · Part ${stepIdx + 1} of ${p.questions.length}` }));

@@ -1,5 +1,6 @@
 // Q8 — Definite integrals (FTC), properties, u-sub on definite integrals, average value.
-import { el, clear, dots, modeHead, mcqCard } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { mulberry32, shuffle } from '../rng.js';
 
 const BANK = [
@@ -74,6 +75,7 @@ export function mount(view, ctx) {
       sub: 'Definite integrals, properties (reversal/additivity), u-sub with bounds, average value.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
+    view.appendChild(methodPanel('q8', METHODS.q8.title, METHODS.q8.body));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

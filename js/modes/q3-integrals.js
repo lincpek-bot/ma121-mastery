@@ -1,6 +1,7 @@
 // Q3 — Indefinite integrals + u-sub trainer.
 // Two flavors: direct antiderivative MCQ, and a guided u-sub walkthrough.
-import { el, clear, dots, modeHead, mcqCard, finalBanner } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, finalBanner, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { mulberry32, shuffle } from '../rng.js';
 
 // Direct antiderivative MCQs (single step).
@@ -188,6 +189,7 @@ export function mount(view, ctx) {
       sub: 'Pick a drill: quick antiderivative MCQs, or a guided u-substitution walk.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
+    view.appendChild(methodPanel('q3', METHODS.q3.title, METHODS.q3.body));
     const grid = el('div', { class: 'mode-grid' });
     grid.appendChild(modeBtn('Direct antiderivatives', '8-card MCQ session', () => { mode = 'direct'; runDirect(); }));
     grid.appendChild(modeBtn('U-substitution walk',    '5-step guided trainer', () => { mode = 'usub'; runUsub(); }));

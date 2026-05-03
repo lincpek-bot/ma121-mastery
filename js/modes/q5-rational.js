@@ -1,6 +1,7 @@
 // Q5 — Rational function full analysis (20pt — biggest priority).
 // 5-step walk: Domain -> Intercepts -> Asymptotes -> f' (sign chart) -> f'' (sign chart).
-import { el, clear, dots, modeHead, mcqCard, finalBanner } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, finalBanner, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { texFill } from '../katex-helper.js';
 import { mulberry32, shuffle } from '../rng.js';
 
@@ -265,6 +266,7 @@ export function mount(view, ctx) {
   function render() {
     clear(view);
     view.appendChild(head());
+    view.appendChild(methodPanel('q5', METHODS.q5.title, METHODS.q5.body));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
     view.appendChild(el('div', { class: 'card' }, [
       el('div', { class: 'step-label', text: 'Function under analysis' }),

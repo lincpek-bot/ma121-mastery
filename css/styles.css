@@ -159,3 +159,17 @@ canvas.riemann { background: #fff; border: 0.5px solid var(--border); border-rad
 .sign-cell button:focus-visible, .home-link:focus-visible, .ghost-btn:focus-visible {
   outline: 2px solid var(--ink); outline-offset: 2px;
 }
+
+/* METHOD PANEL */
+.method-card { border: 0.5px solid var(--border-strong); border-radius: var(--radius); background: #fafafa; margin-bottom: 12px; overflow: hidden; }
+.method-card.open { background: #fbfbf7; }
+.method-head { width: 100%; text-align: left; background: transparent; border: none; padding: 10px 14px; font-family: var(--sans); font-size: 13px; color: var(--ink); cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.method-head:hover { background: rgba(0,0,0,0.02); }
+.method-caret { font-size: 11px; color: var(--ink-soft); width: 12px; display: inline-block; }
+.method-title { font-weight: 600; letter-spacing: -0.005em; }
+.method-body { padding: 4px 18px 14px 34px; font-size: 13px; line-height: 1.55; color: var(--hint); border-top: 0.5px solid var(--border); }
+.method-body p { margin: 8px 0; }
+.method-body ol, .method-body ul { margin: 6px 0; padding-left: 20px; }
+.method-body li { margin: 4px 0; }
+.method-body b { color: var(--ink); font-weight: 600; }
+.method-body .katex { font-size: 1em; }

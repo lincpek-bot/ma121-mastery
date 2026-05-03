@@ -116,3 +116,27 @@ export function plainCard(html) {
   setTimeout(() => texFill(c), 0);
   return c;
 }
+
+// Collapsible "How to do this" panel. Open by default on first visit per mode.
+export function methodPanel(modeId, title, bodyHtml) {
+  const storeKey = `ma121:method:${modeId}`;
+  const open = localStorage.getItem(storeKey) !== '0';
+  const card = el('div', { class: 'method-card' + (open ? ' open' : '') });
+  const head = el('button', { class: 'method-head', type: 'button' });
+  head.appendChild(el('span', { class: 'method-caret', text: open ? '▾' : '▸' }));
+  head.appendChild(el('span', { class: 'method-title', text: 'Method · ' + title }));
+  const body = el('div', { class: 'method-body', html: bodyHtml });
+  body.style.display = open ? '' : 'none';
+  head.addEventListener('click', () => {
+    const nowOpen = body.style.display === 'none';
+    body.style.display = nowOpen ? '' : 'none';
+    card.classList.toggle('open', nowOpen);
+    head.firstChild.textContent = nowOpen ? '▾' : '▸';
+    localStorage.setItem(storeKey, nowOpen ? '1' : '0');
+    if (nowOpen) texFill(body);
+  });
+  card.appendChild(head);
+  card.appendChild(body);
+  if (open) setTimeout(() => texFill(body), 0);
+  return card;
+}

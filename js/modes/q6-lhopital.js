@@ -1,5 +1,6 @@
 // Q6 — L'Hôpital's Rule. 3-step flow per problem: verify form, differentiate top/bottom, evaluate.
-import { el, clear, dots, modeHead, mcqCard, finalBanner } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, finalBanner, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { texFill } from '../katex-helper.js';
 import { mulberry32, shuffle } from '../rng.js';
 
@@ -133,6 +134,7 @@ export function mount(view, ctx) {
   function render() {
     clear(view);
     view.appendChild(head());
+    view.appendChild(methodPanel('q6', METHODS.q6.title, METHODS.q6.body));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

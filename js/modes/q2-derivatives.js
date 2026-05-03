@@ -1,5 +1,6 @@
 // Q2 — Derivatives MCQ. Hand-verified bank covering all rules + the "constant trap".
-import { el, clear, dots, modeHead, mcqCard } from '../ui.js';
+import { el, clear, dots, modeHead, mcqCard, methodPanel } from '../ui.js';
+import { METHODS } from '../methods.js';
 import { mulberry32, shuffle } from '../rng.js';
 
 // Each problem: f(x) (TeX), 4 choices, one correct.
@@ -82,6 +83,7 @@ export function mount(view, ctx) {
       sub: 'Power, exponential, logarithm, chain, product, quotient — and the constant trap.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
+    view.appendChild(methodPanel('q2', METHODS.q2.title, METHODS.q2.body));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];
