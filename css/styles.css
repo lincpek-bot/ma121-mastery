@@ -173,3 +173,10 @@ canvas.riemann { background: #fff; border: 0.5px solid var(--border); border-rad
 .method-body li { margin: 4px 0; }
 .method-body b { color: var(--ink); font-weight: 600; }
 .method-body .katex { font-size: 1em; }
+.method-hint { color: var(--ink-soft); font-weight: 400; font-style: italic; margin-left: auto; font-size: 12px; }
+.method-intro { padding: 8px 12px; background: #fff; border: 0.5px solid var(--border); border-radius: 6px; margin: 8px 0 12px; color: var(--ink); }
+.method-step { margin: 10px 0; padding: 8px 12px; background: #fff; border-left: 2px solid var(--ink); border-radius: 0 6px 6px 0; }
+.method-step-label { font-weight: 600; color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.method-step-body { color: var(--ink); }
+.method-controls { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+.method-final { padding: 10px 12px; background: #f3f7f0; border: 0.5px solid #c9d6bc; border-radius: 6px; color: var(--ink); width: 100%; margin-bottom: 8px; }

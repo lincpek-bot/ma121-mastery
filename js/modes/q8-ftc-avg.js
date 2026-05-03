@@ -75,7 +75,7 @@ export function mount(view, ctx) {
       sub: 'Definite integrals, properties (reversal/additivity), u-sub with bounds, average value.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
-    view.appendChild(methodPanel('q8', METHODS.q8.title, METHODS.q8.body));
+    view.appendChild(methodPanel('q8', METHODS.q8));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

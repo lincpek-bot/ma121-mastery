@@ -253,7 +253,7 @@ export function mount(view, ctx) {
       sub: 'Read limits, continuity, asymptotes, and holes directly from the graph.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
-    view.appendChild(methodPanel('q1', METHODS.q1.title, METHODS.q1.body));
+    view.appendChild(methodPanel('q1', METHODS.q1));
     view.appendChild(dots(p.questions.length, stepIdx, perStep));
     const card = el('div', { class: 'card' });
     card.appendChild(el('div', { class: 'step-label', text: `Problem ${probIdx + 1} · Part ${stepIdx + 1} of ${p.questions.length}` }));

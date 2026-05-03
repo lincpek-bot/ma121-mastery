@@ -117,26 +117,61 @@ export function plainCard(html) {
   return c;
 }
 
-// Collapsible "How to do this" panel. Open by default on first visit per mode.
-export function methodPanel(modeId, title, bodyHtml) {
+// Interactive "Method" walkthrough — closed by default. Open it, click "Reveal step" to advance.
+// method = { title, intro (HTML), steps: [{label, body (HTML)}], final (HTML) }
+export function methodPanel(modeId, method) {
   const storeKey = `ma121:method:${modeId}`;
-  const open = localStorage.getItem(storeKey) !== '0';
+  const open = localStorage.getItem(storeKey) === '1';
   const card = el('div', { class: 'method-card' + (open ? ' open' : '') });
   const head = el('button', { class: 'method-head', type: 'button' });
   head.appendChild(el('span', { class: 'method-caret', text: open ? '▾' : '▸' }));
-  head.appendChild(el('span', { class: 'method-title', text: 'Method · ' + title }));
-  const body = el('div', { class: 'method-body', html: bodyHtml });
+  head.appendChild(el('span', { class: 'method-title', text: 'Method walkthrough · ' + method.title }));
+  head.appendChild(el('span', { class: 'method-hint', text: open ? '' : '(click to learn the concept)' }));
+  const body = el('div', { class: 'method-body' });
   body.style.display = open ? '' : 'none';
+
+  let revealed = 0;
+  function renderBody() {
+    body.innerHTML = '';
+    const intro = el('div', { class: 'method-intro', html: '<b>Problem:</b> ' + method.intro });
+    body.appendChild(intro);
+    for (let i = 0; i < revealed; i++) {
+      const s = method.steps[i];
+      const stepEl = el('div', { class: 'method-step' });
+      stepEl.appendChild(el('div', { class: 'method-step-label', text: s.label }));
+      stepEl.appendChild(el('div', { class: 'method-step-body', html: s.body }));
+      body.appendChild(stepEl);
+    }
+    const ctrl = el('div', { class: 'method-controls' });
+    if (revealed < method.steps.length) {
+      const btn = el('button', { class: 'btn', type: 'button', text: revealed === 0 ? 'Reveal step 1' : `Reveal step ${revealed + 1}` });
+      btn.addEventListener('click', () => { revealed += 1; renderBody(); });
+      ctrl.appendChild(btn);
+      const skip = el('button', { class: 'btn alt', type: 'button', text: 'Show all' });
+      skip.addEventListener('click', () => { revealed = method.steps.length; renderBody(); });
+      ctrl.appendChild(skip);
+    } else {
+      ctrl.appendChild(el('div', { class: 'method-final', html: method.final }));
+      const reset = el('button', { class: 'btn alt', type: 'button', text: 'Restart walkthrough' });
+      reset.addEventListener('click', () => { revealed = 0; renderBody(); });
+      ctrl.appendChild(reset);
+    }
+    body.appendChild(ctrl);
+    texFill(body);
+  }
+
   head.addEventListener('click', () => {
     const nowOpen = body.style.display === 'none';
     body.style.display = nowOpen ? '' : 'none';
     card.classList.toggle('open', nowOpen);
     head.firstChild.textContent = nowOpen ? '▾' : '▸';
+    head.querySelector('.method-hint').textContent = nowOpen ? '' : '(click to learn the concept)';
     localStorage.setItem(storeKey, nowOpen ? '1' : '0');
-    if (nowOpen) texFill(body);
+    if (nowOpen && revealed === 0) renderBody();
+    else if (nowOpen) texFill(body);
   });
   card.appendChild(head);
   card.appendChild(body);
-  if (open) setTimeout(() => texFill(body), 0);
+  if (open) renderBody();
   return card;
 }

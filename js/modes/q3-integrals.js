@@ -189,7 +189,7 @@ export function mount(view, ctx) {
       sub: 'Pick a drill: quick antiderivative MCQs, or a guided u-substitution walk.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
-    view.appendChild(methodPanel('q3', METHODS.q3.title, METHODS.q3.body));
+    view.appendChild(methodPanel('q3', METHODS.q3));
     const grid = el('div', { class: 'mode-grid' });
     grid.appendChild(modeBtn('Direct antiderivatives', '8-card MCQ session', () => { mode = 'direct'; runDirect(); }));
     grid.appendChild(modeBtn('U-substitution walk',    '5-step guided trainer', () => { mode = 'usub'; runUsub(); }));

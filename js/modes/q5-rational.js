@@ -266,7 +266,7 @@ export function mount(view, ctx) {
   function render() {
     clear(view);
     view.appendChild(head());
-    view.appendChild(methodPanel('q5', METHODS.q5.title, METHODS.q5.body));
+    view.appendChild(methodPanel('q5', METHODS.q5));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
     view.appendChild(el('div', { class: 'card' }, [
       el('div', { class: 'step-label', text: 'Function under analysis' }),

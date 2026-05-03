@@ -134,7 +134,7 @@ export function mount(view, ctx) {
   function render() {
     clear(view);
     view.appendChild(head());
-    view.appendChild(methodPanel('q6', METHODS.q6.title, METHODS.q6.body));
+    view.appendChild(methodPanel('q6', METHODS.q6));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

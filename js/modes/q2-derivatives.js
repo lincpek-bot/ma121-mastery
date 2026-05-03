@@ -83,7 +83,7 @@ export function mount(view, ctx) {
       sub: 'Power, exponential, logarithm, chain, product, quotient — and the constant trap.',
       score: { correct: ctx.score.correct, total: ctx.score.total },
     }));
-    view.appendChild(methodPanel('q2', METHODS.q2.title, METHODS.q2.body));
+    view.appendChild(methodPanel('q2', METHODS.q2));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

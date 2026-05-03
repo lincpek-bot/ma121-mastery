@@ -179,7 +179,7 @@ export function mount(view, ctx) {
   function render() {
     clear(view);
     view.appendChild(head());
-    view.appendChild(methodPanel('q7', METHODS.q7.title, METHODS.q7.body));
+    view.appendChild(methodPanel('q7', METHODS.q7));
     view.appendChild(dots(TOTAL, stepIdx, perStep));
 
     const probIdx = order[stepIdx % order.length];

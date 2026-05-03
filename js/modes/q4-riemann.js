@@ -32,7 +32,7 @@ export function mount(view, ctx) {
     view.appendChild(modeHead({ qLabel: 'Q4 · ★★★', title: 'Riemann Sums + FTC',
       sub: 'Drag the slider for n, pick left or right, then verify with the FTC.',
       score: { correct: ctx.score.correct, total: ctx.score.total } }));
-    view.appendChild(methodPanel('q4', METHODS.q4.title, METHODS.q4.body));
+    view.appendChild(methodPanel('q4', METHODS.q4));
     view.appendChild(dots(3, stepIdx, perStep));
 
     const card = el('div', { class: 'card' });
